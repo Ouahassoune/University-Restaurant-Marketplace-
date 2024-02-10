@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datepicker and Type de repas Example</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group space-y-10">
+                <div class="space-y-20">
+                    <span class="nameInput">Choisir Le Type de repas que vous souhaitez Placer:</span>
+                    <select class="form-select custom-select" aria-label="Default select example" id="mealType">
+                        <option>Please Select</option>
+                        <option value="petit-dejeuner">Petit-déjeuner</option>
+                        <option value="dejeuner">Déjeuner</option>
+                        <option value="diner">Dîner</option>
+                    </select>
+                </div>
+                <div class="space-y-10">
+                    <span class="nameInput">Date de repas:</span>
+                    <input type="date" class="form-control" name="dob" id="dob" min="<?= date('Y-m-d') ?>" />
+                </div>
+                <!-- Other input fields... -->
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="right__part">
+                <img id="mealImage" class="meal-image" src="assets/img/meals/default.jpg" alt="Meal Image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('dob').setAttribute('min', today);
+
+        const mealTypeSelect = document.getElementById('mealType');
+        const mealImage = document.getElementById('mealImage');
+
+        mealTypeSelect.addEventListener('change', () => {
+            const selectedMealType = mealTypeSelect.value;
+            const imagePath = `assets/img/meals/${selectedMealType}.jpg`; // Change the path accordingly
+            mealImage.src = imagePath;
+        });
+    </script>
+</body>
+</html>
